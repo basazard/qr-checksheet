@@ -29,10 +29,13 @@
                             <td>{{ $standard }}</td>
                             <td>
                                 <input type="text" value="{{ $standard }}"
-                                    class="input input-bordered w-full max-w-xs" />
+                                    class="input input-bordered w-full max-w-xs"
+                                    @foreach ($names as $name)
+                                       name="{{ $name }}" 
+                                    @endforeach />
                             </td>
                             <td>
-                                <input type="text" placeholder=". . ." class="input input-bordered w-full max-w-xs" />
+                                <input type="text" placeholder=". . ." class="input input-bordered w-full max-w-xs" name="remarks{{ $loop->iteration }}"/>
                             </td>
                             <td>
                                 <label><input type="checkbox" class="checkbox" /></label>

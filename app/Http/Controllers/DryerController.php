@@ -21,7 +21,14 @@ class DryerController extends Controller
             'Indikator Filter Out' => 'Range Hijau',
         ];
 
-        return view('dryer.index', compact('items'));
+        $names = [
+            'humidity',
+            'body_dryer',
+            'indikator_filter_in',
+            'indikator_filter_out',
+        ];
+
+        return view('dryer.index', compact('items','names'));
     }
 
     /**

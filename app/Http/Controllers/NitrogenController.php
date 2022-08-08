@@ -19,7 +19,12 @@ class NitrogenController extends Controller
             'Purity' => '<= 100ppm',
         ];
 
-        return view('nitrogen.index', compact('items'));
+        $names = [
+            'lcd_display',
+            'purity',
+        ];
+
+        return view('nitrogen.index', compact('items','names'));
     }
 
     /**

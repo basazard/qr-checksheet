@@ -38,7 +38,16 @@ class CompressorController extends Controller
             'temp_hp_element',
         ];
 
-        return view('compressor.index', compact('items', 'names'));
+        $theads = [
+            'NO',
+            'ITEM',
+            'STANDARD',	
+            'CURRENT CONDITION',
+            'REMARKS',
+            'CHECKED',
+        ];
+
+        return view('compressor.index', compact('items', 'names', 'theads'));
     }
 
     /**

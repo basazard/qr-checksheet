@@ -15,6 +15,14 @@ class CreateDryersTable extends Migration
     {
         Schema::create('dryers', function (Blueprint $table) {
             $table->id();
+            $table->string('humidity');
+            $table->text('remarks1')->nullable();
+            $table->string('body_dryer');
+            $table->text('remarks2')->nullable();
+            $table->string('indikator_filter_in');
+            $table->text('remarks3')->nullable();
+            $table->string('indikator_filter_out');
+            $table->text('remarks4')->nullable();
             $table->timestamps();
         });
     }
