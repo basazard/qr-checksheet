@@ -44,9 +44,13 @@ class DryerController extends Controller
     {
         $dryer = Dryer::create([
             'Humidity' => $request->Humidity,
+            'remarks1' => $request->remarks1,
             'BodyDryer' => $request->BodyDryer,
+            'remarks2' => $request->remarks2,
             'IndikatorFilterIn' => $request->IndikatorFilterIn,
+            'remarks3' => $request->remarks3,
             'IndikatorFilterOut' => $request->IndikatorFilterOut,
+            'remarks4' => $request->remarks4,
         ]);
 
         return redirect()->back();

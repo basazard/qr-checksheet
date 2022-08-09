@@ -15,10 +15,10 @@ class TangkiController extends Controller
     public function index()
     {
         $items = [
-            'Kran Pembuangan Air Tangki #1' => 'Tidak Ada Air',
-            'Tekanan Angin Tangki #1' => '0.6 ~ 0.9 kg/cm2',
-            'Tekanan Angin Tangki #2' => '0.6 ~ 0.8 kg/cm2',
-            'Tekanan Angin Tangki #3' => '0.5 ~ 0.8 kg/cm2',
+            'Kran Pembuangan Air Tangki 1' => 'Tidak Ada Air',
+            'Tekanan Angin Tangki 1' => '0.6 ~ 0.9 kg/cm2',
+            'Tekanan Angin Tangki 2' => '0.6 ~ 0.8 kg/cm2',
+            'Tekanan Angin Tangki 3' => '0.5 ~ 0.8 kg/cm2',
         ];
 
         return view('tangki.index', compact('items'));
@@ -42,7 +42,18 @@ class TangkiController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $tangki = Tangki::create([
+            'KranPembuanganAirTangki1' => $request->KranPembuanganAirTangki1,
+            'remarks1' => $request->remarks1,
+            'TekananAnginTangki1' => $request->TekananAnginTangki1,
+            'remarks2' => $request->remarks2,
+            'TekananAnginTangki2' => $request->TekananAnginTangki2,
+            'remarks3' => $request->remarks3,
+            'TekananAnginTangki3' => $request->TekananAnginTangki3,
+            'remarks4' => $request->remarks4,
+        ]);
+
+        return redirect()->back();
     }
 
     /**

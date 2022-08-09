@@ -51,7 +51,9 @@ class NitrogenController extends Controller
     {
         $nitrogen = Nitrogen::create([
             'LCDDisplay' => $request->LCDDisplay,
+            'remarks1' => $request->remarks1,
             'Purity' => $request->Purity,
+            'remarks2' => $request->remarks2,
         ]);
 
         return redirect()->back();

@@ -7,6 +7,7 @@
         <x-head-content/>
 
         <form action="{{ route('dryer.store') }}" method="post">
+            @csrf
             <div class="overflow-x-auto mb-4">
                 <table class="table w-full">
                     <!-- head -->

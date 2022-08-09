@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Nitrogen extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'LCDDisplay',
+        'remarks1',
+        'Purity',
+        'remarks2',
+    ];
 }
