@@ -19,12 +19,16 @@ class NitrogenController extends Controller
             'Purity' => '<= 100ppm',
         ];
 
-        $names = [
-            'lcd_display',
-            'purity',
+        $theads = [
+            'NO',
+            'ITEM',
+            'STANDARD',	
+            'CURRENT CONDITION',
+            'REMARKS',
+            'CHECKED',
         ];
 
-        return view('nitrogen.index', compact('items','names'));
+        return view('nitrogen.index', compact('items','theads'));
     }
 
     /**
@@ -45,7 +49,12 @@ class NitrogenController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $nitrogen = Nitrogen::create([
+            'LCDDisplay' => $request->LCDDisplay,
+            'Purity' => $request->Purity,
+        ]);
+
+        return redirect()->back();
     }
 
     /**

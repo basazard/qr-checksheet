@@ -19,23 +19,11 @@ class CompressorController extends Controller
             'Emergency Button' => 'Tidak ditekan',
             'Loading Pressure' => '0.6 ~ 0.8 kg/cm2',
             'Temperature Mesin' => '< 65°C',
-            'Temperatur Oil' => '< 65°C',
+            'Temperature Oil' => '< 65°C',
             'Pressure Oil' => '> 1.6 bar',
             'Body Compressor' => 'Bebas Debu',
             'Temp LP Element' => '< 200°C',
             'Temp HP Element' => '< 200°C',
-        ];
-
-        $names = [
-            'lcd_display',
-            'emergency_button',
-            'loading_pressure',
-            'temp_mesin',
-            'temp_oil',
-            'pressure_oil',
-            'body_compressor',
-            'temp_lp_element',
-            'temp_hp_element',
         ];
 
         $theads = [
@@ -47,7 +35,7 @@ class CompressorController extends Controller
             'CHECKED',
         ];
 
-        return view('compressor.index', compact('items', 'names', 'theads'));
+        return view('compressor.index', compact('items', 'theads'));
     }
 
     /**
@@ -68,7 +56,28 @@ class CompressorController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $compressor = Compressor::create([
+            'LCDDisplay' => $request->LCDDisplay,
+            'remarks1' => $request->remarks1,
+            'EmergencyButton' => $request->EmergencyButton,
+            'remarks2' => $request->remarks2,
+            'LoadingPressure' => $request->LoadingPressure,
+            'remarks3' => $request->remarks3,
+            'TemperatureMesin' => $request->TemperatureMesin,
+            'remarks4' => $request->remarks4,
+            'TemperatureOil' => $request->TemperatureOil,
+            'remarks5' => $request->remarks5,
+            'PressureOil' => $request->PressureOil,
+            'remarks6' => $request->remarks6,
+            'BodyCompressor' => $request->BodyCompressor,
+            'remarks7' => $request->remarks7,
+            'TempLPElement' => $request->TempLPElement,
+            'remarks8' => $request->remarks8,
+            'TempHPElement' => $request->TempHPElement,
+            'remarks9' => $request->remarks9,
+        ]);
+
+        return redirect()->back();
     }
 
     /**

@@ -29,7 +29,7 @@
                             <td>{{ $standard }}</td>
                             <td>
                                 <input type="text" value="{{ $standard }}"
-                                    class="input input-bordered w-full max-w-xs" />
+                                    class="input input-bordered w-full max-w-xs" name="{{ $item }}"/>
                             </td>
                             <td>
                                 <input type="text" placeholder=". . ." class="input input-bordered w-full max-w-xs" />

@@ -15,9 +15,9 @@ class CreateNitrogensTable extends Migration
     {
         Schema::create('nitrogens', function (Blueprint $table) {
             $table->id();
-            $table->string('lcd_display');
+            $table->string('LCDDisplay');
             $table->text('remarks1')->nullable();
-            $table->string('purity');
+            $table->string('Purity');
             $table->text('remarks2')->nullable();
             $table->timestamps();
         });

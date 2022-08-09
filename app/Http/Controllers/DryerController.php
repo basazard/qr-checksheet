@@ -21,14 +21,7 @@ class DryerController extends Controller
             'Indikator Filter Out' => 'Range Hijau',
         ];
 
-        $names = [
-            'humidity',
-            'body_dryer',
-            'indikator_filter_in',
-            'indikator_filter_out',
-        ];
-
-        return view('dryer.index', compact('items','names'));
+        return view('dryer.index', compact('items'));
     }
 
     /**
@@ -49,7 +42,14 @@ class DryerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $dryer = Dryer::create([
+            'Humidity' => $request->Humidity,
+            'BodyDryer' => $request->BodyDryer,
+            'IndikatorFilterIn' => $request->IndikatorFilterIn,
+            'IndikatorFilterOut' => $request->IndikatorFilterOut,
+        ]);
+
+        return redirect()->back();
     }
 
     /**

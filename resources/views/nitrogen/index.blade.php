@@ -12,12 +12,9 @@
                     <!-- head -->
                     <thead>
                         <tr>
-                            <th></th>
-                            <th>Item</th>
-                            <th>Standard</th>
-                            <th>Current Condition</th>
-                            <th>Remarks</th>
-                            <th>Checked</th>
+                            @foreach ($theads as $thead)
+                                <th>{{ $thead }}</th>
+                            @endforeach
                         </tr>
                     </thead>
                     <tbody>
@@ -29,10 +26,7 @@
                             <td>{{ $standard }}</td>
                             <td>
                                 <input type="text" value="{{ $standard }}"
-                                    class="input input-bordered w-full max-w-xs" name="
-                                    @foreach ($names as $name)
-                                        {{ $name }}
-                                    @endforeach "/>
+                                    class="input input-bordered w-full max-w-xs" name="{{ str_replace(" ","",$item) }}"/>
                             </td>
                             <td>
                                 <input type="text" placeholder=". . ." class="input input-bordered w-full max-w-xs" name="remarks{{ $loop->iteration }}" />

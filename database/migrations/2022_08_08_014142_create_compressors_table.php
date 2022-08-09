@@ -15,23 +15,23 @@ class CreateCompressorsTable extends Migration
     {
         Schema::create('compressors', function (Blueprint $table) {
             $table->id();
-            $table->string('lcd_display');
+            $table->string('LCDDisplay');
             $table->text('remarks1')->nullable();
-            $table->string('emergency_button');
+            $table->string('EmergencyButton');
             $table->text('remarks2')->nullable();
-            $table->string('loading_pressure');
+            $table->string('LoadingPressure');
             $table->text('remarks3')->nullable();
-            $table->string('temp_mesin');
+            $table->string('TemperatureMesin');
             $table->text('remarks4')->nullable();
-            $table->string('temp_oil');
+            $table->string('TemperatureOil');
             $table->text('remarks5')->nullable();
-            $table->string('pressure_oil');
+            $table->string('PressureOil');
             $table->text('remarks6')->nullable();
-            $table->string('body_compressor');
+            $table->string('BodyCompressor');
             $table->text('remarks7')->nullable();
-            $table->string('temp_lp_element');
+            $table->string('TempLPElement');
             $table->text('remarks8')->nullable();
-            $table->string('temp_hp_element');
+            $table->string('TempHPElement');
             $table->text('remarks9')->nullable();
             $table->timestamps();
         });
