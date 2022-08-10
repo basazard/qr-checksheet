@@ -2,7 +2,7 @@
     <x-slot name="header">
         <x-header>Dashboard</x-header>
     </x-slot>
-
+    
     <div class="py-12">
 
         {{-- Content --}}

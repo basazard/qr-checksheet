@@ -2,6 +2,8 @@
 
 namespace App\View\Components;
 
+use App\Models\Nitrogen as ModelsNitrogen;
+use Carbon\Carbon;
 use Illuminate\View\Component;
 
 class Nitrogen extends Component
@@ -23,6 +25,8 @@ class Nitrogen extends Component
      */
     public function render()
     {
-        return view('components.nitrogen');
+        $nitrogen = ModelsNitrogen::whereDate('created_at', '=', Carbon::today())->latest()->limit(1)->get();
+
+        return view('components.nitrogen', compact('nitrogen'));
     }
 }

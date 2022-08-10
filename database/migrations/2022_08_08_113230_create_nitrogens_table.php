@@ -19,6 +19,7 @@ class CreateNitrogensTable extends Migration
             $table->text('remarks1')->nullable();
             $table->string('Purity');
             $table->text('remarks2')->nullable();
+            $table->string('checker');
             $table->timestamps();
         });
     }

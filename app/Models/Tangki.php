@@ -17,5 +17,6 @@ class Tangki extends Model
         'remarks3',
         'TekananAnginTangki3',
         'remarks4',
+        'checker',
     ];
 }

@@ -33,6 +33,7 @@ class CreateCompressorsTable extends Migration
             $table->text('remarks8')->nullable();
             $table->string('TempHPElement');
             $table->text('remarks9')->nullable();
+            $table->string('checker');
             $table->timestamps();
         });
     }

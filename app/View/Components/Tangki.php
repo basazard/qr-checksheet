@@ -2,6 +2,8 @@
 
 namespace App\View\Components;
 
+use App\Models\Tangki as ModelsTangki;
+use Carbon\Carbon;
 use Illuminate\View\Component;
 
 class Tangki extends Component
@@ -23,6 +25,8 @@ class Tangki extends Component
      */
     public function render()
     {
-        return view('components.tangki');
+        $tangki = ModelsTangki::whereDate('created_at', '=', Carbon::today())->latest()->limit(1)->get();
+
+        return view('components.tangki', compact('tangki'));
     }
 }

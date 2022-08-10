@@ -54,9 +54,10 @@ class NitrogenController extends Controller
             'remarks1' => $request->remarks1,
             'Purity' => $request->Purity,
             'remarks2' => $request->remarks2,
+            'checker' => $request->checker,
         ]);
 
-        return redirect()->back();
+        return redirect()->route('dashboard')->with('message', 'Your data is successfully recorded!');
     }
 
     /**

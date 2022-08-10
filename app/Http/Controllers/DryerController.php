@@ -51,9 +51,10 @@ class DryerController extends Controller
             'remarks3' => $request->remarks3,
             'IndikatorFilterOut' => $request->IndikatorFilterOut,
             'remarks4' => $request->remarks4,
+            'checker' => $request->checker,
         ]);
 
-        return redirect()->back();
+        return redirect()->route('dashboard')->with('message', 'Your data is successfully recorded!');
     }
 
     /**
@@ -85,9 +86,11 @@ class DryerController extends Controller
      * @param  \App\Models\Dryer  $dryer
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Dryer $dryer)
+    public function update(Request $request, $id)
     {
-        //
+        $dryer = Dryer::find($id)->update($request->all()); 
+
+        return redirect()->route('dashboard')->with('message', 'Your data is successfully updated!');
     }
 
     /**

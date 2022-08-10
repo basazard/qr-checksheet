@@ -17,5 +17,6 @@ class Dryer extends Model
         'remarks3',
         'IndikatorFilterOut',
         'remarks4',
+        'checker',
     ];
 }

@@ -2,6 +2,8 @@
 
 namespace App\View\Components;
 
+use App\Models\Compressor as ModelsCompressor;
+use Carbon\Carbon;
 use Illuminate\View\Component;
 
 class Compressor extends Component
@@ -23,6 +25,8 @@ class Compressor extends Component
      */
     public function render()
     {
-        return view('components.compressor');
+        $compressor = ModelsCompressor::whereDate('created_at', '=', Carbon::today())->latest()->limit(1)->get();
+        
+        return view('components.compressor', compact('compressor'));
     }
 }

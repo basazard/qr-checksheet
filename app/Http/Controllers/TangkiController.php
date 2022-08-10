@@ -51,9 +51,10 @@ class TangkiController extends Controller
             'remarks3' => $request->remarks3,
             'TekananAnginTangki3' => $request->TekananAnginTangki3,
             'remarks4' => $request->remarks4,
+            'checker' => $request->checker,
         ]);
 
-        return redirect()->back();
+        return redirect()->route('dashboard')->with('message', 'Your data is successfully recorded!');
     }
 
     /**

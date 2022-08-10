@@ -23,6 +23,7 @@ class CreateTangkisTable extends Migration
             $table->text('remarks3')->nullable();
             $table->string('TekananAnginTangki3');
             $table->text('remarks4')->nullable();
+            $table->string('checker');
             $table->timestamps();
         });
     }

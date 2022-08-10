@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Compressor;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class CompressorController extends Controller
@@ -35,7 +36,9 @@ class CompressorController extends Controller
             'CHECKED',
         ];
 
-        return view('compressor.index', compact('items', 'theads'));
+        $compressor = Compressor::whereDate('created_at', '=', Carbon::today())->latest()->limit(1)->get();
+
+        return view('compressor.index', compact('items', 'theads', 'compressor'));
     }
 
     /**
@@ -75,9 +78,10 @@ class CompressorController extends Controller
             'remarks8' => $request->remarks8,
             'TempHPElement' => $request->TempHPElement,
             'remarks9' => $request->remarks9,
+            'checker' => $request->checker,
         ]);
 
-        return redirect()->back();
+        return redirect()->route('dashboard')->with('message', 'Your data is successfully recorded!');
     }
 
     /**
@@ -109,9 +113,11 @@ class CompressorController extends Controller
      * @param  \App\Models\Compressor  $compressor
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Compressor $compressor)
+    public function update(Request $request, $id)
     {
-        //
+        $compressor = Compressor::find($id)->update($request->all()); 
+
+        return redirect()->route('dashboard')->with('message', 'Your data is successfully updated!');
     }
 
     /**

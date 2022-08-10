@@ -13,5 +13,6 @@ class Nitrogen extends Model
         'remarks1',
         'Purity',
         'remarks2',
+        'checker',
     ];
 }

@@ -10,6 +10,7 @@
             @csrf
             <div class="overflow-x-auto mb-4">
                 <table class="table w-full">
+                    <input type="hidden" name="checker" value="{{ Auth()->user()->name }}">
                     <!-- head -->
                     <thead>
                         <tr>
@@ -37,7 +38,7 @@
                                 <input type="text" placeholder=". . ." class="input input-bordered w-full max-w-xs" name="remarks{{ $loop->iteration }}"/>
                             </td>
                             <td>
-                                <label><input type="checkbox" class="checkbox" /></label>
+                                <label><input type="checkbox" class="checkbox" required/></label>
                             </td>
                         </tr>
                         @endforeach

@@ -27,5 +27,6 @@ class Compressor extends Model
         'remarks8',
         'TempHPElement',
         'remarks9',
+        'checker',
     ];
 }
