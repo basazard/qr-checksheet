@@ -20,7 +20,7 @@ use Illuminate\Support\Facades\Route;
 Route::group(['middleware' => ['auth']], function () {
     Route::view('/', 'dashboard')->name('dashboard');
 
-    Route::view('timeline', 'timeline')->name('timeline');
+    Route::get('timeline', [TimelineController::class, 'index'])->name('timeline');
 
     Route::resource('compressor', CompressorController::class);
     Route::resource('dryer', DryerController::class);
