@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Nitrogen;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class NitrogenController extends Controller
@@ -28,7 +29,9 @@ class NitrogenController extends Controller
             'CHECKED',
         ];
 
-        return view('nitrogen.index', compact('items','theads'));
+        $nitrogen = Nitrogen::whereDate('created_at', '=', Carbon::today())->latest()->limit(1)->get();
+
+        return view('nitrogen.index', compact('items','theads','nitrogen'));
     }
 
     /**
@@ -89,9 +92,11 @@ class NitrogenController extends Controller
      * @param  \App\Models\Nitrogen  $nitrogen
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Nitrogen $nitrogen)
+    public function update(Request $request, $id)
     {
-        //
+        $nitrogen = Nitrogen::find($id)->update($request->all()); 
+
+        return redirect()->route('dashboard')->with('message', 'Your data is successfully updated!');
     }
 
     /**

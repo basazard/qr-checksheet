@@ -4,4 +4,8 @@
             {{ __('Timeline') }}
         </h2>
     </x-slot>
+
+    <div class="py-12 px-12">
+    Test
+    </div>
 </x-app-layout>

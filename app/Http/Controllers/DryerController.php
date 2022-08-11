@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Dryer;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class DryerController extends Controller
@@ -21,7 +22,18 @@ class DryerController extends Controller
             'Indikator Filter Out' => 'Range Hijau',
         ];
 
-        return view('dryer.index', compact('items'));
+        $theads = [
+            'NO',
+            'ITEM',
+            'STANDARD',	
+            'CURRENT CONDITION',
+            'REMARKS',
+            'CHECKED',
+        ];
+
+        $dryer = Dryer::whereDate('created_at', '=', Carbon::today())->latest()->limit(1)->get();
+
+        return view('dryer.index', compact('items','theads','dryer'));
     }
 
     /**

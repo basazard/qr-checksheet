@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Tangki;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class TangkiController extends Controller
@@ -21,7 +22,18 @@ class TangkiController extends Controller
             'Tekanan Angin Tangki 3' => '0.5 ~ 0.8 kg/cm2',
         ];
 
-        return view('tangki.index', compact('items'));
+        $theads = [
+            'NO',
+            'ITEM',
+            'STANDARD',	
+            'CURRENT CONDITION',
+            'REMARKS',
+            'CHECKED',
+        ];
+
+        $tangki = Tangki::whereDate('created_at', '=', Carbon::today())->latest()->limit(1)->get();
+
+        return view('tangki.index', compact('items','theads','tangki'));
     }
 
     /**
@@ -86,9 +98,11 @@ class TangkiController extends Controller
      * @param  \App\Models\Tangki  $tangki
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Tangki $tangki)
+    public function update(Request $request, $id)
     {
-        //
+        $tangki = Tangki::find($id)->update($request->all()); 
+
+        return redirect()->route('dashboard')->with('message', 'Your data is successfully updated!');
     }
 
     /**
