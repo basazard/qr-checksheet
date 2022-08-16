@@ -1,5 +1,4 @@
-<x-content>
-    <table id="tableCompressor" class="display" style="width:100%">
+<table id="tableCompressor" class="display cell-border" style="width:100%">
         <thead>
             <tr>
                 @foreach ($theadsCompressor as $thead)
@@ -36,4 +35,3 @@
             
         </tbody>
     </table>  
-</x-content>
