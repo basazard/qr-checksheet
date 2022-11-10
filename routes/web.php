@@ -19,13 +19,19 @@ use Illuminate\Support\Facades\Route;
 */
 Route::group(['middleware' => ['auth']], function () {
     Route::view('/', 'dashboard')->name('dashboard');
+    Route::view('qrscan', 'qr-scan')->name('qrscan');
 
     Route::get('timeline', [TimelineController::class, 'index'])->name('timeline');
 
-    Route::resource('compressor', CompressorController::class);
-    Route::resource('dryer', DryerController::class);
-    Route::resource('nitrogen', NitrogenController::class);
-    Route::resource('tangki', TangkiController::class);
+    Route::get('compressor/{authorize}', [CompressorController::class, 'show'])->name('compressor.show');
+    Route::get('dryer/{authorize}', [DryerController::class, 'show'])->name('dryer.show');
+    Route::get('nitrogen/{authorize}', [NitrogenController::class, 'show'])->name('nitrogen.show');
+    Route::get('tangki/{authorize}', [TangkiController::class, 'show'])->name('tangki.show');
+    
+    Route::resource('compressor', CompressorController::class)->except('show');
+    Route::resource('dryer', DryerController::class)->except('show');
+    Route::resource('nitrogen', NitrogenController::class)->except('show');
+    Route::resource('tangki', TangkiController::class);    
 });
 
 require __DIR__.'/auth.php';

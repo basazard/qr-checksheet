@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Authorization;
 use App\Models\Nitrogen;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -15,23 +16,9 @@ class NitrogenController extends Controller
      */
     public function index()
     {
-        $items = [
-            'LCD Display' => 'Nyala',
-            'Purity' => '<= 100ppm',
-        ];
+        $authorizations = Authorization::all();
 
-        $theads = [
-            'NO',
-            'ITEM',
-            'STANDARD',	
-            'CURRENT CONDITION',
-            'REMARKS',
-            'CHECKED',
-        ];
-
-        $nitrogen = Nitrogen::whereDate('created_at', '=', Carbon::today())->latest()->limit(1)->get();
-
-        return view('nitrogen.index', compact('items','theads','nitrogen'));
+        return view('nitrogen.index', compact('authorizations'));
     }
 
     /**
@@ -71,7 +58,23 @@ class NitrogenController extends Controller
      */
     public function show(Nitrogen $nitrogen)
     {
-        //
+        $items = [
+            'LCD Display' => 'Nyala',
+            'Purity' => '<= 100ppm',
+        ];
+
+        $theads = [
+            'NO',
+            'ITEM',
+            'STANDARD',	
+            'CURRENT CONDITION',
+            'REMARKS',
+            'CHECKED',
+        ];
+
+        $nitrogenToday = Nitrogen::whereDate('created_at', '=', Carbon::today())->latest()->limit(1)->get();
+
+        return view('nitrogen.show', compact('items','theads','nitrogenToday'));
     }
 
     /**

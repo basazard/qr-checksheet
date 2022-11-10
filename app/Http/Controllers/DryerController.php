@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Authorization;
 use App\Models\Dryer;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -15,25 +16,9 @@ class DryerController extends Controller
      */
     public function index()
     {
-        $items = [
-            'Humidity' => 'Min -20%',
-            'Body Dryer' => 'Bebas Debu',
-            'Indikator Filter In' => 'Range Hijau',
-            'Indikator Filter Out' => 'Range Hijau',
-        ];
-
-        $theads = [
-            'NO',
-            'ITEM',
-            'STANDARD',	
-            'CURRENT CONDITION',
-            'REMARKS',
-            'CHECKED',
-        ];
-
-        $dryer = Dryer::whereDate('created_at', '=', Carbon::today())->latest()->limit(1)->get();
-
-        return view('dryer.index', compact('items','theads','dryer'));
+        $authorizations = Authorization::all();
+        
+        return view('dryer.index', compact('authorizations'));
     }
 
     /**
@@ -77,7 +62,25 @@ class DryerController extends Controller
      */
     public function show(Dryer $dryer)
     {
-        //
+        $items = [
+            'Humidity' => 'Min -20%',
+            'Body Dryer' => 'Bebas Debu',
+            'Indikator Filter In' => 'Range Hijau',
+            'Indikator Filter Out' => 'Range Hijau',
+        ];
+
+        $theads = [
+            'NO',
+            'ITEM',
+            'STANDARD',	
+            'CURRENT CONDITION',
+            'REMARKS',
+            'CHECKED',
+        ];
+
+        $dryerToday = Dryer::whereDate('created_at', '=', Carbon::today())->latest()->limit(1)->get();
+
+        return view('dryer.show', compact('items','theads','dryerToday'));
     }
 
     /**

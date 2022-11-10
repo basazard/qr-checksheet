@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Authorization;
 use App\Models\Tangki;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -15,25 +16,9 @@ class TangkiController extends Controller
      */
     public function index()
     {
-        $items = [
-            'Kran Pembuangan Air Tangki 1' => 'Tidak Ada Air',
-            'Tekanan Angin Tangki 1' => '0.6 ~ 0.9 kg/cm2',
-            'Tekanan Angin Tangki 2' => '0.6 ~ 0.8 kg/cm2',
-            'Tekanan Angin Tangki 3' => '0.5 ~ 0.8 kg/cm2',
-        ];
+        $authorizations = Authorization::all();
 
-        $theads = [
-            'NO',
-            'ITEM',
-            'STANDARD',	
-            'CURRENT CONDITION',
-            'REMARKS',
-            'CHECKED',
-        ];
-
-        $tangki = Tangki::whereDate('created_at', '=', Carbon::today())->latest()->limit(1)->get();
-
-        return view('tangki.index', compact('items','theads','tangki'));
+        return view('tangki.index', compact('authorizations'));
     }
 
     /**
@@ -77,7 +62,25 @@ class TangkiController extends Controller
      */
     public function show(Tangki $tangki)
     {
-        //
+        $items = [
+            'Kran Pembuangan Air Tangki 1' => 'Tidak Ada Air',
+            'Tekanan Angin Tangki 1' => '0.6 ~ 0.9 kg/cm2',
+            'Tekanan Angin Tangki 2' => '0.6 ~ 0.8 kg/cm2',
+            'Tekanan Angin Tangki 3' => '0.5 ~ 0.8 kg/cm2',
+        ];
+
+        $theads = [
+            'NO',
+            'ITEM',
+            'STANDARD',	
+            'CURRENT CONDITION',
+            'REMARKS',
+            'CHECKED',
+        ];
+
+        $tangkiToday = Tangki::whereDate('created_at', '=', Carbon::today())->latest()->limit(1)->get();
+
+        return view('tangki.show', compact('items','theads','tangkiToday'));
     }
 
     /**

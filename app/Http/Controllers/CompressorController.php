@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Authorization;
 use App\Models\Compressor;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -15,30 +16,9 @@ class CompressorController extends Controller
      */
     public function index()
     {
-        $items = [
-            'LCD Display' => 'Nyala',
-            'Emergency Button' => 'Tidak ditekan',
-            'Loading Pressure' => '0.6 ~ 0.8 kg/cm2',
-            'Temperature Mesin' => '< 65°C',
-            'Temperature Oil' => '< 65°C',
-            'Pressure Oil' => '> 1.6 bar',
-            'Body Compressor' => 'Bebas Debu',
-            'Temp LP Element' => '< 200°C',
-            'Temp HP Element' => '< 200°C',
-        ];
-
-        $theads = [
-            'NO',
-            'ITEM',
-            'STANDARD',	
-            'CURRENT CONDITION',
-            'REMARKS',
-            'CHECKED',
-        ];
-
-        $compressor = Compressor::whereDate('created_at', '=', Carbon::today())->latest()->limit(1)->get();
-
-        return view('compressor.index', compact('items', 'theads', 'compressor'));
+        $authorizations = Authorization::all();
+        
+        return view('compressor.index', compact('authorizations'));
     }
 
     /**
@@ -92,7 +72,30 @@ class CompressorController extends Controller
      */
     public function show(Compressor $compressor)
     {
-        //
+        $items = [
+            'LCD Display' => 'Nyala',
+            'Emergency Button' => 'Tidak ditekan',
+            'Loading Pressure' => '0.6 ~ 0.8 kg/cm2',
+            'Temperature Mesin' => '< 65°C',
+            'Temperature Oil' => '< 65°C',
+            'Pressure Oil' => '> 1.6 bar',
+            'Body Compressor' => 'Bebas Debu',
+            'Temp LP Element' => '< 200°C',
+            'Temp HP Element' => '< 200°C',
+        ];
+
+        $theads = [
+            'NO',
+            'ITEM',
+            'STANDARD',	
+            'CURRENT CONDITION',
+            'REMARKS',
+            'CHECKED',
+        ];
+
+        $compressorToday = Compressor::whereDate('created_at', '=', Carbon::today())->latest()->limit(1)->get();
+
+        return view('compressor.show', compact('compressor','items', 'theads', 'compressorToday'));
     }
 
     /**
